@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "À Propos de l'Annuaire";
+}
+
+<div class="container py-5">
+    <h1 class="display-4 mb-4 text-primary">À Propos : Annuaire des Écoles d'Ingénieurs</h1>
+    <hr class="mb-5" />
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="h4">Notre Mission</h2>
+            <p class="lead text-muted">
+                Ce site a été conçu pour simplifier la recherche d'informations sur les écoles d'ingénieurs en Tunisie.
+                Que vous soyez un futur étudiant, un parent ou un recruteur, nous vous offrons une liste centralisée et facile à naviguer.
+            </p>
+
+            <h2 class="h4 mt-5">Source des Données</h2>
+            <p>
+                Les données affichées (noms, sections, directeurs, et sites web) sont fournies via une **API de gestion d'écoles** que nous avons développée. L'objectif principal de cette application est de démontrer l'intégration réussie entre une application client ASP.NET Core MVC et un service Web API REST.
+            </p>
+
+            <h2 class="h4 mt-5">Confidentialité</h2>
+            <p>
+                En tant qu'application de démonstration technique/annuaire public, nous ne collectons **aucune donnée personnelle** de nos utilisateurs. Votre confidentialité est totalement assurée. Les informations affichées concernent uniquement les établissements publics.
+            </p>
+        </div>
+        <div class="col-md-4 text-center d-flex align-items-center justify-content-center">
+            <i class="fas fa-info-circle fa-8x text-secondary opacity-25"></i>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 pt-3 border-top">
+        <a asp-controller="SchoolClient" asp-action="GetAllSchools" class="btn btn-outline-primary">
+            Retour à la Liste des Écoles
+        </a>
+    </div>
+</div>

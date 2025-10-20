@@ -1,0 +1,72 @@
+﻿@{
+    // 1. Titre de la page mis à jour
+    ViewData["Title"] = "Annuaire des Écoles d'Ingénieurs en Tunisie";
+}
+
+<div class="text-center py-5 hero-section">
+    <h1 class="display-3 fw-bold text-primary">
+        Trouvez Votre École d'Ingénieurs en Tunisie 🇹🇳
+    </h1>
+    <p class="lead mt-4 mb-5 text-muted">
+        Découvrez, comparez et explorez toutes les grandes écoles d'ingénieurs.
+        Un annuaire simple et complet pour faire le bon choix.
+    </p>
+
+    <a asp-controller="SchoolClient" asp-action="GetAllSchools" class="btn btn-primary btn-lg shadow-lg pulse-effect">
+        <i class="fas fa-search"></i> Voir la Liste Complète des Écoles
+    </a>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3 border-0">
+                <div class="card-body text-center">
+                    <i class="fas fa-university fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Accès Rapide</h5>
+                    <p class="card-text text-muted">Trouvez immédiatement toutes les écoles répertoriées.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3 border-0">
+                <div class="card-body text-center">
+                    <i class="fas fa-cogs fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Information Clé</h5>
+                    <p class="card-text text-muted">Sections, Directeurs, et Sites Web à portée de main.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm p-3 border-0">
+                <div class="card-body text-center">
+                    <i class="fas fa-map-marked-alt fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Simple et Précis</h5>
+                    <p class="card-text text-muted">Des données fiables pour vous aider dans votre choix.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="border-top footer text-muted mt-5">
+    <div class="container text-center">
+        &copy; @DateTime.Now.Year - E-Schools TN : Votre référence pour l'ingénierie tunisienne.
+    </div>
+</footer>
+
+<style>
+    /* Styles spécifiques pour Home/Index pour une meilleure UX/UI */
+    .hero-section {
+        background: linear-gradient(145deg, #f8f9fa, #e9ecef); /* Fond doux */
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .pulse-effect {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+        /* Effet visuel au survol pour attirer l'attention sur le bouton */
+        .pulse-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
+        }
+</style>

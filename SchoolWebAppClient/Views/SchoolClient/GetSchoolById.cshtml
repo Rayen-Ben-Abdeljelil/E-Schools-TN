@@ -1,0 +1,55 @@
+﻿@model SchoolWebAppClient.Models.SchoolClient
+
+@{
+    ViewData["Title"] = "Détails de l'école";
+}
+
+<h1>Détails de l'école</h1>
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sections)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sections)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.WebSite))
+            {
+                <a href="@Model.WebSite" target="_blank">@Model.WebSite</a>
+            }
+            else
+            {
+                <text>-</text>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditSchool" asp-route-id="@Model.Id" class="btn btn-warning">Modifier</a>
+    <a asp-action="GetAllSchools" class="btn btn-secondary">Retour à la liste</a>
+</div>

@@ -1,0 +1,58 @@
+﻿@model SchoolWebAppClient.Models.SchoolClient
+
+@{
+    ViewData["Title"] = "Créer une école";
+}
+
+<h1>Créer une nouvelle école</h1>
+
+<h4>École</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateSchool" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sections" class="control-label"></label>
+                <input asp-for="Sections" class="form-control" />
+                <span asp-validation-for="Sections" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Director" class="control-label"></label>
+                <input asp-for="Director" class="form-control" />
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" type="number" step="0.1" min="0" max="5" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WebSite" class="control-label"></label>
+                <input asp-for="WebSite" class="form-control" type="url" />
+                <span asp-validation-for="WebSite" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+                <a asp-action="GetAllSchools" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

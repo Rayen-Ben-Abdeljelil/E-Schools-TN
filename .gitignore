@@ -1,0 +1,13 @@
+# Dossiers et fichiers à ignorer pour les projets .NET/Visual Studio
+
+# Visual Studio / IDE
+.vs/
+*.suo
+*.user
+
+# Dossiers de compilation et de paquets
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.Designer.cs.dbs
+node_modules/
