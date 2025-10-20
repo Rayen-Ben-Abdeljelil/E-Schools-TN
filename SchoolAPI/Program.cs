@@ -3,9 +3,7 @@ using SchoolAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-// Enregistrement du DbContext comme service
+//services.
 builder.Services.AddDbContext<SchoolDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolConnection")));
 

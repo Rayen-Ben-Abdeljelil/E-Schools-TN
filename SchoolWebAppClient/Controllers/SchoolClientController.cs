@@ -14,7 +14,7 @@ namespace SchoolWebAppClient.Controllers
             _client.BaseAddress = new Uri("https://localhost:7158/");
         }
 
-        // Action GetAllSchools - Étape 4 du TP
+        // Action GetAllSchools
         public async Task<IActionResult> GetAllSchools()
         {
             try
@@ -51,7 +51,7 @@ namespace SchoolWebAppClient.Controllers
             }
         }
 
-        // Action GetSchoolById - Étape 5 du TP
+        // Action GetSchoolById
         public async Task<IActionResult> GetSchoolById(int id)
         {
             HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
@@ -65,7 +65,7 @@ namespace SchoolWebAppClient.Controllers
             return NotFound();
         }
 
-        // Action GetSchoolByName - Étape 6 du TP
+        // Action GetSchoolByName
         public async Task<IActionResult> GetSchoolByName(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -84,25 +84,25 @@ namespace SchoolWebAppClient.Controllers
             return View(new List<SchoolClient>());
         }
 
-        // GET: CreateSchool - Étape 7 du TP
+        // GET: CreateSchool
         public IActionResult CreateSchool()
         {
             return View();
         }
 
-        // POST: CreateSchool - Étape 7 du TP
+        // POST: CreateSchool
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateSchool(SchoolClient school)
         {
             try
             {
-                // Retirer la validation ModelState temporairement pour déboguer
-                ModelState.Remove("Id"); // L'Id n'est pas requis pour la création
+                
+                ModelState.Remove("Id");
 
                 if (!ModelState.IsValid)
                 {
-                    // Afficher les erreurs de validation
+                    
                     ViewBag.ErrorMessage = "Veuillez corriger les erreurs de validation.";
                     return View(school);
                 }
@@ -126,7 +126,7 @@ namespace SchoolWebAppClient.Controllers
             }
         }
 
-        // GET: EditSchool - Étape 8 du TP (appelle GetSchoolById)
+        // GET: EditSchool
         public async Task<IActionResult> EditSchool(int id)
         {
             HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
@@ -140,7 +140,7 @@ namespace SchoolWebAppClient.Controllers
             return NotFound();
         }
 
-        // POST: EditSchool - Étape 8 du TP
+        // POST: EditSchool
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditSchool(SchoolClient school)
@@ -155,7 +155,7 @@ namespace SchoolWebAppClient.Controllers
             return View();
         }
 
-        // GET: DeleteSchool - Étape 9 du TP (appelle GetSchoolById)
+        // GET: DeleteSchool
         public async Task<IActionResult> DeleteSchool(int id)
         {
             HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
@@ -169,7 +169,7 @@ namespace SchoolWebAppClient.Controllers
             return NotFound();
         }
 
-        // POST: DeleteSchool - Étape 9 du TP
+        // POST: DeleteSchool
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSchool(SchoolClient school)

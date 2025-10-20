@@ -27,7 +27,7 @@ namespace SchoolAPI.Controllers
             return await _context.Schools.ToListAsync();
         }
 
-        // GET: api/Schools/5
+        // GET: api/Schools/id
         [HttpGet("get-school-by-id/{id}")]
         public async Task<ActionResult<School>> GetSchool(int id)
         {
@@ -41,7 +41,7 @@ namespace SchoolAPI.Controllers
             return school;
         }
 
-        // GET: api/Schools/search-by-name?name=ENI
+        // GET: api/Schools/search-by-name
         [HttpGet("search-by-name")]
         public async Task<ActionResult<IEnumerable<School>>> SearchByName([FromQuery] string name)
         {
@@ -62,8 +62,7 @@ namespace SchoolAPI.Controllers
             return schools;
         }
 
-        // PUT: api/Schools/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Schools/id
         [HttpPut("edit-school/{id}")]
         public async Task<IActionResult> PutSchool(int id, School school)
         {
@@ -94,7 +93,6 @@ namespace SchoolAPI.Controllers
         }
 
         // POST: api/Schools
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("create-school")]
         public async Task<ActionResult<School>> PostSchool(School school)
         {
@@ -104,7 +102,7 @@ namespace SchoolAPI.Controllers
             return CreatedAtAction("GetSchool", new { id = school.Id }, school);
         }
 
-        // DELETE: api/Schools/5
+        // DELETE: api/Schools/id
         [HttpDelete("delete-school/{id}")]
         public async Task<IActionResult> DeleteSchool(int id)
         {
