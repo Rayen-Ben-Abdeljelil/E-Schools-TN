@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolAPI.Models;
+using SchoolAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //services.
+builder.Services.AddScoped<IUniversityRepository, SchoolRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<SchoolDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolConnection")));

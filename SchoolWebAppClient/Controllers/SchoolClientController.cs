@@ -19,7 +19,7 @@ namespace SchoolWebAppClient.Controllers
         {
             try
             {
-                HttpResponseMessage response = await _client.GetAsync("api/Schools/get-all-schools");
+                HttpResponseMessage response = await _client.GetAsync("api/SchoolsRepo/list-schools");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -54,7 +54,7 @@ namespace SchoolWebAppClient.Controllers
         // Action GetSchoolById
         public async Task<IActionResult> GetSchoolById(int id)
         {
-            HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
+            HttpResponseMessage response = await _client.GetAsync($"api/SchoolsRepo/get-school-by-id/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -73,7 +73,7 @@ namespace SchoolWebAppClient.Controllers
                 return RedirectToAction(nameof(GetAllSchools));
             }
 
-            HttpResponseMessage response = await _client.GetAsync($"api/Schools/search-by-name?name={name}");
+            HttpResponseMessage response = await _client.GetAsync($"api/SchoolsRepo/search-by-name?name={name}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -107,7 +107,7 @@ namespace SchoolWebAppClient.Controllers
                     return View(school);
                 }
 
-                HttpResponseMessage response = await _client.PostAsJsonAsync("api/schools/create-school", school);
+                HttpResponseMessage response = await _client.PostAsJsonAsync("api/SchoolsRepo/add-new-school", school);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -129,7 +129,7 @@ namespace SchoolWebAppClient.Controllers
         // GET: EditSchool
         public async Task<IActionResult> EditSchool(int id)
         {
-            HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
+            HttpResponseMessage response = await _client.GetAsync($"api/SchoolsRepo/get-school-by-id/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -145,7 +145,7 @@ namespace SchoolWebAppClient.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditSchool(SchoolClient school)
         {
-            HttpResponseMessage response = await _client.PutAsJsonAsync("api/schools/edit-school/" + school.Id, school);
+            HttpResponseMessage response = await _client.PutAsJsonAsync("api/SchoolsRepo/edit-school/" + school.Id, school);
 
             if (response.IsSuccessStatusCode)
             {
@@ -158,7 +158,7 @@ namespace SchoolWebAppClient.Controllers
         // GET: DeleteSchool
         public async Task<IActionResult> DeleteSchool(int id)
         {
-            HttpResponseMessage response = await _client.GetAsync($"api/Schools/get-school-by-id/{id}");
+            HttpResponseMessage response = await _client.GetAsync($"api/SchoolsRepo/get-school-by-id/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -174,7 +174,7 @@ namespace SchoolWebAppClient.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSchool(SchoolClient school)
         {
-            HttpResponseMessage response = await _client.DeleteAsync("api/schools/delete-school/" + school.Id);
+            HttpResponseMessage response = await _client.DeleteAsync("api/SchoolsRepo/delete-school/" + school.Id);
 
             if (response.IsSuccessStatusCode)
             {

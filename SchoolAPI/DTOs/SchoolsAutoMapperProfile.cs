@@ -12,16 +12,19 @@ namespace SchoolAPI.DTOs
 
             // Mappage pour l'écriture (Mapping DTO → Classe du domaine)
             CreateMap<SchoolDto, School>()
-            //SchoolDto n'a pas les champs (Director, Website, etc.) et ils ne peuvent pas être nuls.
-            
-            .ForMember(dest => dest.Director, opt => opt.MapFrom(src => string.Empty))
-            
-            .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => string.Empty))
+            // 1. IGNORER l'ID, car il est généré par la base de données lors de la création
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
 
-            // Correction pour 'WebSite' (si elle est aussi non-nullable dans la BDD)
-            .ForMember(dest => dest.WebSite, opt => opt.MapFrom(src => string.Empty))
+                // 2. CORRECTION DES CHAMPS REQUIS MANQUANTS DANS LE DTO :
+                // Director est requis dans School mais absent dans SchoolDto
+                .ForMember(dest => dest.Director, opt => opt.MapFrom(src => string.Empty))
 
-            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => 0));
+                // Sections est requis dans School mais absent dans SchoolDto
+                .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => string.Empty))
+
+                // WebSite est absent dans SchoolDto mais pourrait être non-nullable (bien que marqué string?)
+                .ForMember(dest => dest.WebSite, opt => opt.MapFrom(src => string.Empty));
+               
         }
     }
 }
