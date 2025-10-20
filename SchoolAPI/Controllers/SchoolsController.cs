@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolAPI.Models;
+using SchoolAPI.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace SchoolAPI.Controllers
 {
@@ -14,10 +17,29 @@ namespace SchoolAPI.Controllers
     public class SchoolsController : ControllerBase
     {
         private readonly SchoolDbContext _context;
+        private readonly IMapper _mapper;
 
-        public SchoolsController(SchoolDbContext context)
+        public SchoolsController(SchoolDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+        }
+
+        [HttpGet("list-schools")]
+        public async Task<ActionResult<IEnumerable<SchoolDto>>> ListSchools()
+        {
+            return  Ok(_context.Schools.Select(school => _mapper.Map<SchoolDto>(school)));
+        }
+
+        [HttpPost("add-new-school")]
+        public async Task<IActionResult> AddSchool(SchoolDto newschool)
+        {
+            
+            var school = _mapper.Map<School>(newschool);
+            _context.Schools.Add(school);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         // GET: api/Schools

@@ -4,6 +4,7 @@ using SchoolAPI.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 //services.
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<SchoolDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolConnection")));
 
